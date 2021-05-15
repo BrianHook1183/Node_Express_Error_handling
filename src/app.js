@@ -9,6 +9,17 @@ app.get("/send/:message", (req, res, next) => {
   res.send(`Your message: ${message}`);
 });
 
-// Error Handling
+// *Error Handling
+
+// Route Not Found Handler
+// Test isn't looking for it but could add ${req.path} in response to give feedback of the part of the URL that didn't match any routes
+app.use((req, res, next) => {
+  res.send(`An error occurred: Could not find route.`);
+});
+
+// Error Handler
+app.use((err, req, res, next) => {
+  res.send(`An error occurred: ${err}`);
+});
 
 module.exports = app;
